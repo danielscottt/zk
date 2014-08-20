@@ -18,6 +18,7 @@ type errCode int32
 
 var (
 	ErrExists     = errors.New("zk: node already exists")   // Create
+	ErrNotEmpty   = errors.New("zk: node has children")     // Delete
 	ErrInvalidAcl = errors.New("zk: ACL is not supported")  // Create
 	ErrVersion    = errors.New("zk: node version differs")  // Set/Delete
 	ErrNoNode     = errors.New("zk: no node found at path") // Exists/Get
@@ -29,6 +30,7 @@ var (
 	ErrProtocol = errors.New("zk: protocol error")
 
 	errMap = map[errCode]error{
+		errNotEmpty:   ErrNotEmpty,
 		errNodeExists: ErrExists,
 		errBadVersion: ErrVersion,
 		errNoNode:     ErrNoNode,
@@ -60,7 +62,7 @@ const (
 	errBadVersion = errCode(-103)
 	//errNoChildrenForEphemerals = errCode(-108)
 	errNodeExists = errCode(-110)
-	//errNotEmpty                = errCode(-111)
+	errNotEmpty = errCode(-111)
 	errSessionExpired = errCode(-112)
 	//errInvalidCallback         = errCode(-113)
 	errInvalidAcl = errCode(-114)
