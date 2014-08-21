@@ -23,18 +23,20 @@ var (
 	ErrVersion    = errors.New("zk: node version differs")  // Set/Delete
 	ErrNoNode     = errors.New("zk: no node found at path") // Exists/Get
 
-	ErrExpired    = errors.New("zk: session expired")         // All
-	ErrConnection = errors.New("zk: connection lost")         // All
-	ErrAuth       = errors.New("zk: connection unauthorized") // All
+	ErrBadArguments = errors.New("zk: bad arguments")           // All
+	ErrExpired      = errors.New("zk: session expired")         // All
+	ErrConnection   = errors.New("zk: connection lost")         // All
+	ErrAuth         = errors.New("zk: connection unauthorized") // All
 
 	ErrProtocol = errors.New("zk: protocol error")
 
 	errMap = map[errCode]error{
-		errNotEmpty:   ErrNotEmpty,
-		errNodeExists: ErrExists,
-		errBadVersion: ErrVersion,
-		errNoNode:     ErrNoNode,
-		errInvalidAcl: ErrInvalidAcl,
+		errBadArguments: ErrBadArguments,
+		errNotEmpty:    ErrNotEmpty,
+		errNodeExists:  ErrExists,
+		errBadVersion:  ErrVersion,
+		errNoNode:      ErrNoNode,
+		errInvalidAcl:  ErrInvalidAcl,
 	}
 )
 
@@ -66,6 +68,7 @@ const (
 	errSessionExpired = errCode(-112)
 	//errInvalidCallback         = errCode(-113)
 	errInvalidAcl = errCode(-114)
+	errBadArguments = errCode(-8)
 	//errAuthFailed              = errCode(-115)
 	//errClosing                 = errCode(-116)
 	//errNothing                 = errCode(-117)
